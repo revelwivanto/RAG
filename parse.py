@@ -148,7 +148,7 @@ def parse_pdf(pdf_path, max_pages=None):
 if __name__ == "__main__":
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     DATA_DIR = os.path.join(BASE_DIR, "data")
-    OUTPUT_DIR = os.path.join(DATA_DIR, "parsed_result")
+    OUTPUT_DIR = os.path.join(BASE_DIR, "parsed_result")
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 

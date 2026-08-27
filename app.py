@@ -24,10 +24,10 @@ from llama_index.vector_stores.qdrant import QdrantVectorStore
 
 load_dotenv()
 
-QDRANT_URL = "https://b3962249-e1f0-4625-b512-8adbf6e4cd60.sa-east-1-0.aws.cloud.qdrant.io:6333"
-QDRANT_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIiwic3ViamVjdCI6ImFwaS1rZXk6MDM0YTQ2MTQtNGYyZC00ZDZhLWFhZDAtZDI5ODEyZGY1ZTdjIn0.F5B4goKuhonMW51N-lzVFckKg9NthVbrVoucarCpj1w"
-QDRANT_COLLECTION = os.environ.get("QDRANT_COLLECTION", "bni_training")
-HF_TOKEN = "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"
+QDRANT_URL = 
+QDRANT_API_KEY = 
+QDRANT_COLLECTION =
+HF_TOKEN = 
 HF_MODEL = os.environ.get("HF_MODEL", "Qwen/Qwen2.5-14B-Instruct")
 
 EMBED_MODEL_NAME = "BAAI/bge-large-en-v1.5"  # must match embedding.py

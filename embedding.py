@@ -11,6 +11,9 @@ import qdrant_client
 
 load_dotenv()
 
+google_api_key = 
+qdrant_url = 
+qdrant_api_key = 
 
 Settings.embed_model = HuggingFaceEmbedding(
     model_name="BAAI/bge-large-en-v1.5"  # 1024-dim, better quality, slower
@@ -86,6 +89,7 @@ def load_parsed_documents(parsed_dir):
 data_candidates = [
     Path("/kaggle/input/datasets/revelelel/parsed-result"),
     Path("/kaggle/input/parsed-result"),
+    Path.cwd() / "parsed_result",
     Path.cwd() / "data" / "parsed_result",
 ]
 parsed_dir = next((path for path in data_candidates if path.is_dir()), None)
