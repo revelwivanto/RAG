@@ -1,0 +1,4 @@
+scenario,adoption_rate,discount_qty_tier,time_savings_benefit_rp,procurement_savings_benefit_rp,pilot_investment_rp,est_annual_benefit_rp,roi_x,payback_months,data_type
+Conservative,0.5,25,73550000.0,304483000.0,690020000.0,378033000.0,-0.452,21.9,calculated
+Base Case,0.8,100,117680000.0,1442573000.0,690020000.0,1560253000.0,1.261,5.31,calculated
+Upside,1.0,250,147100000.0,1803217000.0,690020000.0,1950317000.0,1.826,4.25,calculated
