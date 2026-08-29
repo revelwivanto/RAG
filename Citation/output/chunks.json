@@ -1,0 +1,1277 @@
+[
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para1",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 76.3,
+      "x1": 401.1,
+      "y1": 115.3
+    },
+    "teks_asli": "BERITA ACARA Nomor: SI.02/18/6/2/D4.3.2/D/SYN-25",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para1_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para1",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 211.9,
+      "y0": 76.3,
+      "x1": 401.1,
+      "y1": 102.5
+    },
+    "id_chunk": "chunk_1",
+    "teks": "BERITA ACARA Nomor: SI.02/18/6/2/D4.3.2/D/SYN-25"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para2",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 115.8,
+      "x1": 488.7,
+      "y1": 151.5
+    },
+    "teks_asli": "TENTANG LAPORAN HASIL PEMERIKSAAN KEBUTUHAN LAPTOP DIREKTUR OPERASI",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para2_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para2",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 124.2,
+      "y0": 115.8,
+      "x1": 488.7,
+      "y1": 139.1
+    },
+    "id_chunk": "chunk_1",
+    "teks": "TENTANG LAPORAN HASIL PEMERIKSAAN KEBUTUHAN LAPTOP DIREKTUR OPERASI"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para3",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 48.2,
+      "y0": 152.2,
+      "x1": 124.4,
+      "y1": 165.4
+    },
+    "teks_asli": "Berdasarkan :",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para3_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para3",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 48.2,
+      "y0": 152.2,
+      "x1": 124.4,
+      "y1": 165.4
+    },
+    "id_chunk": "chunk_1",
+    "teks": "Berdasarkan :"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para4",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 166.2,
+      "x1": 559.0,
+      "y1": 222.8
+    },
+    "teks_asli": "1. Diterimanya email dari Sekertaris Direktur Operasi terkait permintaan fasilitas laptop untk Direktur Operasi yang baru 2. Ticket Permintaan Laptop Direktur Operasi dengan nomor ITSM-SYN-41827",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para4_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para4",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 65.2,
+      "y0": 166.2,
+      "x1": 559.0,
+      "y1": 208.2
+    },
+    "id_chunk": "chunk_1",
+    "teks": "1. Diterimanya email dari Sekertaris Direktur Operasi terkait permintaan fasilitas laptop untk Direktur Operasi yang baru 2. Ticket Permintaan Laptop Direktur Operasi dengan nomor ITSM-SYN-41827"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para5",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 223.6,
+      "x1": 559.1,
+      "y1": 280.3
+    },
+    "teks_asli": "Menjelaskan : Dibutuhkannya tindak lanjut atas permintaan laptop Direktur Operasi dengan dilakukan pengadaan laptop baru sesuai dengan spesifikasi yang diminta pada email Sekertaris Direktur Operasi",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para5_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para5",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 48.2,
+      "y0": 223.6,
+      "x1": 559.1,
+      "y1": 265.4
+    },
+    "id_chunk": "chunk_1",
+    "teks": "Menjelaskan : Dibutuhkannya tindak lanjut atas permintaan laptop Direktur Operasi dengan dilakukan pengadaan laptop baru sesuai dengan spesifikasi yang diminta pada email Sekertaris Direktur Operasi"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para6",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 48.2,
+      "y0": 280.8,
+      "x1": 266.5,
+      "y1": 308.5
+    },
+    "teks_asli": "Menyatakan : Setelah diadakan pemeriksaan didapat hasil :",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para6_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para6",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 48.2,
+      "y0": 280.8,
+      "x1": 266.5,
+      "y1": 308.5
+    },
+    "id_chunk": "chunk_1",
+    "teks": "Menyatakan : Setelah diadakan pemeriksaan didapat hasil :"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para7",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 65.2,
+      "y0": 309.2,
+      "x1": 559.8,
+      "y1": 351.3
+    },
+    "teks_asli": "1. Kondisi yang ditemukan: Saat ini Direktur Operasi belum terdapat fasilitas laptop sebagai penunjang kinerja selama bertugas di PT Nusantara Terminal Logistik.",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para7_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para7",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 65.2,
+      "y0": 309.2,
+      "x1": 559.8,
+      "y1": 351.3
+    },
+    "id_chunk": "chunk_1",
+    "teks": "1. Kondisi yang ditemukan: Saat ini Direktur Operasi belum terdapat fasilitas laptop sebagai penunjang kinerja selama bertugas di PT Nusantara Terminal Logistik."
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para8",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 363.8,
+      "x1": 485.0,
+      "y1": 406.9
+    },
+    "teks_asli": "2. Hal ini terjadi diakibatkan oleh : Terdapat pergantian pejabat Direktur Operasi yang aktif per 1 Agustus 2026",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para8_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para8",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 65.2,
+      "y0": 363.8,
+      "x1": 485.0,
+      "y1": 392.1
+    },
+    "id_chunk": "chunk_1",
+    "teks": "2. Hal ini terjadi diakibatkan oleh : Terdapat pergantian pejabat Direktur Operasi yang aktif per 1 Agustus 2026"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para9",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 407.2,
+      "x1": 564.4,
+      "y1": 491.7
+    },
+    "teks_asli": "3. Untuk mengatasi hal tersebut, langkah yang dilakukan adalah: Dibutuhkannya pengadaan 1 (satu) unit perangkat laptop guna pemenuhan fasilitas laptop Direktur Operasi dengan spesifikasi yang sesuai dengan yang tercantum dalam tiket ITSM-SYN-41827 dan sama dengan spesifikasi laptop pengadaan sebelumnya untuk direktur, dengan detail sebagai berikut:",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para9_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para9",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 65.2,
+      "y0": 407.2,
+      "x1": 379.1,
+      "y1": 420.9
+    },
+    "id_chunk": "chunk_1",
+    "teks": "3."
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para9_chunk2",
+    "type": "text_chunk",
+    "parent_id": "p1_para9",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 65.2,
+      "y0": 407.2,
+      "x1": 564.4,
+      "y1": 477.7
+    },
+    "id_chunk": "chunk_2",
+    "teks": "Untuk mengatasi hal tersebut, langkah yang dilakukan adalah: Dibutuhkannya pengadaan 1 (satu) unit perangkat laptop guna pemenuhan fasilitas laptop Direktur Operasi dengan spesifikasi yang sesuai dengan yang tercantum dalam tiket ITSM-SYN-41827 dan sama dengan spesifikasi laptop pengadaan sebelumnya untuk direktur, dengan detail sebagai berikut:"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_table1",
+    "type": "table",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 97.7,
+      "y0": 491.9,
+      "x1": 570.4,
+      "y1": 607.6
+    },
+    "n_rows": 3,
+    "n_cols": 6,
+    "markdown": "| No. | U r a i a n | Volume | Satuan | Harga |  |\n|---|---|---|---|---|---|\n| 1 | Lenovo Yoga 7i \n2in1 Intel \nCore Ultra 7 \nMemory \n16Gb Storage \nNvme 1Tb \nWin 11 Pro | 1 | Unit | Rp.7.000.0000 |  |\n|  |  |  |  |  |  |\n"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_table1_summary",
+    "type": "table_summary",
+    "parent_id": "p1_table1",
+    "page_start": 1,
+    "page_end": 1,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para10",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 607.9,
+      "x1": 457.8,
+      "y1": 635.7
+    },
+    "teks_asli": "Tabel 3.1 Pengadaan Fasilitas Komputerisasi Direktur Operasi",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para10_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para10",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 155.1,
+      "y0": 607.9,
+      "x1": 457.8,
+      "y1": 621.1
+    },
+    "id_chunk": "chunk_1",
+    "teks": "Tabel 3.1 Pengadaan Fasilitas Komputerisasi Direktur Operasi"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para11",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 66.2,
+      "y0": 636.3,
+      "x1": 534.6,
+      "y1": 649.5
+    },
+    "teks_asli": "Demikian Berita Acara Pemeriksaan ini kami buat untuk diketahui dan dipergunakan seperlunya.",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para11_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para11",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 66.2,
+      "y0": 636.3,
+      "x1": 534.6,
+      "y1": 649.5
+    },
+    "id_chunk": "chunk_1",
+    "teks": "Demikian Berita Acara Pemeriksaan ini kami buat untuk diketahui dan dipergunakan seperlunya."
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para12",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 331.1,
+      "y0": 665.6,
+      "x1": 534.6,
+      "y1": 677.9
+    },
+    "teks_asli": "PERANGKAT KERAS DAN DUKUNGAN",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para12_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para12",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 331.1,
+      "y0": 665.6,
+      "x1": 534.6,
+      "y1": 677.9
+    },
+    "id_chunk": "chunk_1",
+    "teks": "PERANGKAT KERAS DAN DUKUNGAN"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para13",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 76.6,
+      "y0": 670.2,
+      "x1": 267.3,
+      "y1": 682.5
+    },
+    "teks_asli": "VICE PRESIDENT INFRASTRUKTUR",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para13_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para13",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 76.6,
+      "y0": 670.2,
+      "x1": 267.3,
+      "y1": 682.5
+    },
+    "id_chunk": "chunk_1",
+    "teks": "VICE PRESIDENT INFRASTRUKTUR"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para14",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 346.3,
+      "y0": 679.0,
+      "x1": 519.2,
+      "y1": 691.3
+    },
+    "teks_asli": "TI  PT Nusantara Terminal Logistik",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para14_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para14",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 346.3,
+      "y0": 679.0,
+      "x1": 519.2,
+      "y1": 691.3
+    },
+    "id_chunk": "chunk_1",
+    "teks": "TI  PT Nusantara Terminal Logistik"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para15",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 93.0,
+      "y0": 683.8,
+      "x1": 262.7,
+      "y1": 696.1
+    },
+    "teks_asli": "TI PT Nusantara Terminal Logistik",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para15_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para15",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 93.0,
+      "y0": 683.8,
+      "x1": 262.7,
+      "y1": 696.1
+    },
+    "id_chunk": "chunk_1",
+    "teks": "TI PT Nusantara Terminal Logistik"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para16",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 109.6,
+      "y0": 701.8,
+      "x1": 207.0,
+      "y1": 714.1
+    },
+    "teks_asli": "SUPERINTENDEN",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para16_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para16",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 109.6,
+      "y0": 701.8,
+      "x1": 207.0,
+      "y1": 714.1
+    },
+    "id_chunk": "chunk_1",
+    "teks": "SUPERINTENDEN"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para17",
+    "type": "text",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 127.4,
+      "y0": 772.8,
+      "x1": 431.9,
+      "y1": 785.1
+    },
+    "teks_asli": "DIMAS PRATAMA FAJAR NUGROHO",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_para17_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p1_para17",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 127.4,
+      "y0": 772.8,
+      "x1": 431.9,
+      "y1": 785.1
+    },
+    "id_chunk": "chunk_1",
+    "teks": "DIMAS PRATAMA FAJAR NUGROHO"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_img1",
+    "type": "image",
+    "page_start": 1,
+    "page_end": 1,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 527.7,
+      "y0": 785.6,
+      "x1": 577.8,
+      "y1": 835.7
+    },
+    "file": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Output\\images\\page1_img1.png",
+    "parent_id": "p1_para17"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p1_img1_caption",
+    "type": "image_caption",
+    "parent_id": "p1_img1",
+    "page_start": 1,
+    "page_end": 1,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p2_table1",
+    "type": "table",
+    "page_start": 2,
+    "page_end": 2,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 0,
+      "y0": 0.0,
+      "x1": 595.6,
+      "y1": 842.0
+    },
+    "n_rows": 2,
+    "n_cols": 1,
+    "markdown": "| Capture produk perangkat laptop untuk Direktur Operasi : |\n|---|\n| Gambar 1. Lenovo Yoga 7i 2in1 |\n"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p2_table1_summary",
+    "type": "table_summary",
+    "parent_id": "p2_table1",
+    "page_start": 2,
+    "page_end": 2,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p2_img1",
+    "type": "image",
+    "page_start": 2,
+    "page_end": 2,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 156.9,
+      "y0": 92.2,
+      "x1": 441.6,
+      "y1": 294.7
+    },
+    "file": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Output\\images\\page2_img2.jpeg",
+    "parent_id": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p2_img1_caption",
+    "type": "image_caption",
+    "parent_id": "p2_img1",
+    "page_start": 2,
+    "page_end": 2,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p2_img2",
+    "type": "image",
+    "page_start": 2,
+    "page_end": 2,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 527.7,
+      "y0": 785.6,
+      "x1": 577.8,
+      "y1": 835.7
+    },
+    "file": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Output\\images\\page2_img1.png",
+    "parent_id": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p2_img2_caption",
+    "type": "image_caption",
+    "parent_id": "p2_img2",
+    "page_start": 2,
+    "page_end": 2,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p3_table1",
+    "type": "table",
+    "page_start": 3,
+    "page_end": 3,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 18.4,
+      "y0": -5.1,
+      "x1": 404.3,
+      "y1": 598.5
+    },
+    "n_rows": 29,
+    "n_cols": 3,
+    "markdown": "|  | Raka Wijaya |  |\n|---|---|---|\n|  | From: | Dimas Pratama |\n|  | Sent: | Monday, August 10, 2026 1:27 PM |\n|  | To: | Fajar Nugroho |\n|  | Cc: | Raka Wijaya |\n|  | Subject: | FW: Pengadaan Laptop untuk Direktur Operasi |\n|  | Dear Fajar, |  |\n|  | Tolong diproses, terima kasih. |  |\n|  | Dimas Pratama |  |\n|  | VP Infrastruktur TI |  |\n|  | PT Nusantara Terminal Logistik, Indonesia |  |\n|  | Jl. Samudra Raya No. 88 |  |\n|  | Surabaya 60200, Indonesia |  |\n|  | P: |  |\n|  | D: +62 31 7000 1234 |  |\n|  | “Zero Tolerance for Accident” |  |\n|  | Please consider the environment before printing this e-mail |  |\n|  | From: <Bima.Dedali@ptntl.example> |  |\n|  | Sent: Monday, August 10, 2026 1:15 PM |  |\n|  | To: <Dimas.Gunawan@ptntl.example> |  |\n|  | Subject: Fw: Pengadaan Laptop untuk Direktur Operasi |  |\n|  | Mas Dimas, |  |\n|  | Segera di proses sesuai ketentuan, koordinasi dengan unit kerja terkait. |  |\n|  | Terima kasih. |  |\n|  | Best Regards, |  |\n|  | Bima Santoso |  |\n|  | Manajer Teknologi Informasi |  |\n| P | T Nusantara Terminal Logistik, Indonesia |  |\n| Jl. Samudra Raya No. 88 Surabaya 60200, Indonesia |  |  |\n"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p3_table1_summary",
+    "type": "table_summary",
+    "parent_id": "p3_table1",
+    "page_start": 3,
+    "page_end": 3,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p3_para1",
+    "type": "text",
+    "page_start": 3,
+    "page_end": 3,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 747.4,
+      "x1": 309.5,
+      "y1": 760.7
+    },
+    "teks_asli": "1",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p3_para1_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p3_para1",
+    "page_start": 3,
+    "page_end": 3,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 303.7,
+      "y0": 747.4,
+      "x1": 309.5,
+      "y1": 756.3
+    },
+    "id_chunk": "chunk_1",
+    "teks": "1"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p3_img1",
+    "type": "image",
+    "page_start": 3,
+    "page_end": 3,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 527.7,
+      "y0": 785.6,
+      "x1": 577.8,
+      "y1": 835.7
+    },
+    "file": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Output\\images\\page3_img1.png",
+    "parent_id": "p3_para1"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p3_img1_caption",
+    "type": "image_caption",
+    "parent_id": "p3_img1",
+    "page_start": 3,
+    "page_end": 3,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_table1",
+    "type": "table",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 18.4,
+      "y0": -17.6,
+      "x1": 584.6,
+      "y1": 284.4
+    },
+    "n_rows": 12,
+    "n_cols": 1,
+    "markdown": "| E: arjo.dedali@ptntl.example |\n|---|\n| www.ptntl.example |\n| \"Zero Tolerance for Accident\" |\n| Please consider the environment before printing this e-mail |\n| From: Nabila Sari <Nabila.Setianingrum@ptntl.example> |\n| Sent: 10 August 2026 11:01 |\n| To: Sinta Maharani <Sinta.Nurul@ptntl.example>; Bima Santoso <Bima.Dedali@ptntl.example> |\n| Cc: Fajar Nugroho <Fajar.Utama@ptntl.example>; Helpdesk <Helpdesk@ptntl.example> |\n| Subject: Pengadaan Laptop untuk Direktur |\n| Operasi Yth. Bu Sinta dan Pak Bima, |\n| Sehubungan dengan pergantian Direktur Operasi , Mohon dibantu untuk pengadaan Laptop baru untuk Direktur Operasi |\n| dengan spesifikasi sebagai berikut : |\n"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_table1_summary",
+    "type": "table_summary",
+    "parent_id": "p4_table1",
+    "page_start": 4,
+    "page_end": 4,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_img1",
+    "type": "image",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 54.0,
+      "y0": 287.8,
+      "x1": 474.0,
+      "y1": 516.5
+    },
+    "file": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Output\\images\\page4_img2.jpeg",
+    "parent_id": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_img1_caption",
+    "type": "image_caption",
+    "parent_id": "p4_img1",
+    "page_start": 4,
+    "page_end": 4,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_para1",
+    "type": "text",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 545.5,
+      "x1": 352.4,
+      "y1": 569.9
+    },
+    "teks_asli": "Demikian disampaikan , atas kerjasamanya kami ucapkan terima kasih.",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_para1_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p4_para1",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 36.0,
+      "y0": 545.5,
+      "x1": 352.4,
+      "y1": 556.5
+    },
+    "id_chunk": "chunk_1",
+    "teks": "Demikian disampaikan , atas kerjasamanya kami ucapkan terima kasih."
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_para2",
+    "type": "text",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 570.2,
+      "x1": 170.5,
+      "y1": 619.6
+    },
+    "teks_asli": "Best Regards, Nabila Putri S. Sekretaris Direktur Operasi",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_para2_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p4_para2",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 36.0,
+      "y0": 570.2,
+      "x1": 170.5,
+      "y1": 608.1
+    },
+    "id_chunk": "chunk_1",
+    "teks": "Best Regards, Nabila Putri S. Sekretaris Direktur Operasi"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_para3",
+    "type": "text",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 36.0,
+      "y0": 632.4,
+      "x1": 247.1,
+      "y1": 695.1
+    },
+    "teks_asli": "PT Nusantara Terminal Logistik, Indonesia Jl. Samudra Raya No. 88 Surabaya 60200, Indonesia D: +62 31 7000 5678 E: Nabila.setianingrum@ptntl.example",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_para3_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p4_para3",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 36.0,
+      "y0": 632.4,
+      "x1": 247.1,
+      "y1": 695.1
+    },
+    "id_chunk": "chunk_1",
+    "teks": "PT Nusantara Terminal Logistik, Indonesia Jl. Samudra Raya No. 88 Surabaya 60200, Indonesia D: +62 31 7000 5678 E: Nabila.setianingrum@ptntl.example"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_para4",
+    "type": "text",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 28.4,
+      "y0": 747.4,
+      "x1": 309.5,
+      "y1": 760.7
+    },
+    "teks_asli": "2",
+    "is_caption": false
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_para4_chunk1",
+    "type": "text_chunk",
+    "parent_id": "p4_para4",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 303.7,
+      "y0": 747.4,
+      "x1": 309.5,
+      "y1": 756.3
+    },
+    "id_chunk": "chunk_1",
+    "teks": "2"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_img2",
+    "type": "image",
+    "page_start": 4,
+    "page_end": 4,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 527.7,
+      "y0": 785.6,
+      "x1": 577.8,
+      "y1": 835.7
+    },
+    "file": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Output\\images\\page4_img1.png",
+    "parent_id": "p4_para4"
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p4_img2_caption",
+    "type": "image_caption",
+    "parent_id": "p4_img2",
+    "page_start": 4,
+    "page_end": 4,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p5_img1",
+    "type": "image",
+    "page_start": 5,
+    "page_end": 5,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 30.6,
+      "y0": 30.0,
+      "x1": 599.4,
+      "y1": 834.7
+    },
+    "file": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Output\\images\\page5_img2.jpeg",
+    "parent_id": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p5_img1_caption",
+    "type": "image_caption",
+    "parent_id": "p5_img1",
+    "page_start": 5,
+    "page_end": 5,
+    "teks": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p5_img2",
+    "type": "image",
+    "page_start": 5,
+    "page_end": 5,
+    "source_pdf": "BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "source_pdf_path": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Data_sintesis\\BA_Laptop_Yoga_SYNTHETIC_FINAL.pdf",
+    "doc_title": "BA_Laptop_Yoga_SYNTHETIC_FINAL",
+    "page_width": 595.6,
+    "page_height": 842.0,
+    "bounding_box": {
+      "x0": 527.7,
+      "y0": 785.6,
+      "x1": 577.8,
+      "y1": 835.7
+    },
+    "file": "C:\\Users\\DELL\\OneDrive\\Documents\\BNI\\Dataset RAG\\Output\\images\\page5_img1.png",
+    "parent_id": null
+  },
+  {
+    "doc_id": "manual_v3",
+    "id": "p5_img2_caption",
+    "type": "image_caption",
+    "parent_id": "p5_img2",
+    "page_start": 5,
+    "page_end": 5,
+    "teks": null
+  }
+]
