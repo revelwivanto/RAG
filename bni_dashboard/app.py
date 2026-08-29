@@ -180,10 +180,8 @@ if page == PAGES[0]:
         # card holds its place without asserting a number.
         dict(label="Potential Corruption", value=None,
              placeholder="—", note="Rumus sedang diganti — angka ditahan"),
-        dict(label="Total Marketplace Data", value=len(listings), decimals=0,
-             note=f"▸ {len(valid_listings)} lolos data-quality"),
-        dict(label="Documents in Prototype Corpus", value=docs_processed, decimals=0,
-             note="= len(legal_documents.csv)"),
+        dict(label="Total Marketplace Data", value=len(listings), decimals=0),
+        dict(label="Documents in Prototype Corpus", value=docs_processed, decimals=0),
         dict(label="Total Pilot Investment", value=pilot_investment/1e6, prefix="Rp", suffix="jt", decimals=1,
              note="▸ Modul 1 · Investasi"),
     ])
