@@ -106,6 +106,16 @@ def _normalize_raw_marketplace(df: pd.DataFrame) -> pd.DataFrame:
     normalized.loc[normalized["is_suspicious"], "listing_status"] = "flagged_suspicious"
     normalized.loc[normalized["missing_spec"], "listing_status"] = "incomplete"
     normalized["data_type"] = "observed"
+
+    # Raw schema fields the dashboard filter bar exposes directly. They were
+    # dropped here previously, which made them unfilterable even though the
+    # source CSV carries them.
+    normalized["source"] = raw["source"].replace("", "unknown")
+    normalized["source_id"] = raw["source_id"]
+    normalized["model"] = raw["model"].replace("", pd.NA) if "model" in raw else pd.NA
+    normalized["seller_num_reviews"] = pd.to_numeric(raw.get("seller_num_reviews"), errors="coerce")
+    normalized["seller_is_official"] = _as_bool(raw["seller_is_official"]) if "seller_is_official" in raw else False
+    normalized["scam_reasons"] = raw["scam_reasons"].replace("", pd.NA) if "scam_reasons" in raw else pd.NA
     return normalized.reset_index(drop=True)
 
 
@@ -129,11 +139,56 @@ def load_marketplace_listings() -> pd.DataFrame:
 @st.cache_data
 def load_procurement_history() -> pd.DataFrame:
     df = load_csv("procurement_history.csv")
-    df["po_date"] = pd.to_datetime(df["po_date"])
-    df["dedicated_gpu"] = df["dedicated_gpu"].astype(bool)
-    df["has_benchmark_reference"] = df["has_benchmark_reference"].astype(bool)
-    df["has_supporting_doc"] = df["has_supporting_doc"].astype(bool)
+    numeric_cols = [
+        "employee_tenure_months", "months_since_last_upgrade", "travel_days_per_month",
+        "prior_replacements", "build_quality", "portability", "warranty_years",
+        "it_tickets_last_year", "quantity", "requested_unit_price", "historical_avg_price",
+        "total_amount", "vendor_risk_score", "dept_budget_remaining", "dept_policy_cap",
+        "target_uc1_is_match", "target_uc2_months_to_failure", "target_uc3_tco_idr",
+        "target_uc3_opex_idr", "target_uc4_is_approved",
+    ]
+    for column in numeric_cols:
+        if column in df:
+            df[column] = pd.to_numeric(df[column], errors="coerce")
+    for column in ["requires_windows", "is_urgent", "vendor_is_official"]:
+        if column in df:
+            df[column] = _as_bool(df[column])
     return df
+
+
+@st.cache_data
+def procurement_history_view(requests: pd.DataFrame) -> pd.DataFrame:
+    """Build the internal procurement view from request-shaped source data."""
+    if "po_id" in requests.columns:
+        return requests.copy()
+
+    tier_names = {1: "entry", 2: "mid", 3: "high", 4: "premium"}
+    spec_ids = {1: "SPEC-ENTRY", 2: "SPEC-MID", 3: "SPEC-HIGH", 4: "SPEC-PREMIUM"}
+    unit_names = {
+        "HR": "Operations", "Finance": "Finance & Risk", "IT": "IT & Digital",
+        "Design": "Corporate Affairs", "Sales": "Retail Banking", "Medical Staff": "Compliance",
+    }
+    view = pd.DataFrame({
+        "po_id": "PO-REQ-" + requests["request_id"].str.removeprefix("REQ-"),
+        "po_date": pd.date_range("2024-09-01", periods=len(requests), freq="D"),
+        "business_unit": requests["department"].map(unit_names).fillna("Operations"),
+        "spec_id": requests["compute_tier"].map(spec_ids),
+        "cpu_tier": requests["compute_tier"].map(tier_names),
+        "ram_gb": requests["ram_gb"],
+        "storage_gb": requests["storage_gb"],
+        "dedicated_gpu": requests["gpu"].ne("Integrated"),
+        "qty": requests["quantity"],
+        "historical_unit_price_rp": requests["historical_avg_price"],
+        "current_quote_unit_price_rp": requests["requested_unit_price"],
+        "vendor": requests["laptop_brand"].fillna("Unknown"),
+        # These are source-model proxies, not observed procurement evidence.
+        "has_benchmark_reference": requests["target_uc1_is_match"].astype(bool),
+        "has_supporting_doc": requests["target_uc4_is_approved"].astype(bool),
+        "data_type": "synthetic_request_source",
+    })
+    view["historical_total_rp"] = view["historical_unit_price_rp"] * view["qty"]
+    view["current_quote_total_rp"] = view["current_quote_unit_price_rp"] * view["qty"]
+    return view
 
 
 @st.cache_data
