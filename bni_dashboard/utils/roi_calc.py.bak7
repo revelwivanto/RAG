@@ -10,8 +10,6 @@ Traceability chain for every figure in this module:
   dashboard number -> this function -> its input CSV/DataFrame -> the
   assumption/source row in assumptions.csv that justifies each input.
 """
-import re
-
 import numpy as np
 import pandas as pd
 
@@ -157,111 +155,15 @@ def internal_price_variance(requests: pd.DataFrame, price_col: str = "requested_
     group. Groups thinner than `min_peers` are excluded rather than scored off
     a handful of observations."""
     df = requests.copy()
-    df["req_price"] = pd.to_numeric(df[price_col], errors="coerce")
-    g = df.groupby(list(key))["req_price"]
+    df["_price"] = pd.to_numeric(df[price_col], errors="coerce")
+    g = df.groupby(list(key))["_price"]
     df["peer_n"] = g.transform("size")
     df["peer_target"] = g.transform(lambda s: s.quantile(quantile))
-    df = df[(df.peer_n >= min_peers) & df["req_price"].notna()].copy()
-    df["excess_rp"] = (df["req_price"] - df["peer_target"]).clip(lower=0)
+    df = df[(df.peer_n >= min_peers) & df["_price"].notna()].copy()
+    df["excess_rp"] = (df["_price"] - df["peer_target"]).clip(lower=0)
     return df
 
 
 def internal_variance_saving_per_unit(requests: pd.DataFrame, **kwargs) -> float:
     d = internal_price_variance(requests, **kwargs)
     return float(d.excess_rp.sum() / len(d)) if len(d) else 0.0
-
-
-# ---------------------------------------------------------------------------
-# 7. Benchmark targets: internal history first, marketplace as fallback
-# ---------------------------------------------------------------------------
-# Mirrors what the assistant actually does at request time: look for prior
-# purchases of the same machine inside BNI first, and only go out to the
-# marketplace when internal history has nothing comparable to offer. A request
-# that neither source can price is left OUT of the savings entirely rather
-# than benchmarked against something incomparable.
-MARKET_MODEL_MIN_N = 3      # listings needed to price a named model
-MARKET_SPEC_MIN_N = 5       # listings needed to price a cpu-family+RAM+storage bucket
-BENCHMARK_QUANTILE = 0.25   # "readily achievable" market price, not the single cheapest
-
-_CPU_FAMILY_PATTERNS = [
-    (r"\bI9\b|CORE ?I9", "i9"), (r"\bI7\b|CORE ?I7", "i7"),
-    (r"\bI5\b|CORE ?I5", "i5"), (r"\bI3\b|CORE ?I3", "i3"),
-    (r"RYZEN ?9", "ryzen9"), (r"RYZEN ?7", "ryzen7"),
-    (r"RYZEN ?5", "ryzen5"), (r"RYZEN ?3", "ryzen3"),
-    (r"\bM[1-4]\b", "apple-m"),
-]
-
-
-def cpu_family(text) -> str | None:
-    """Coarse CPU family shared by both datasets. Used instead of the old
-    compute_tier -> cpu_tier mapping, which put Core i7 machines into a
-    Core i5 bucket."""
-    s = str(text).upper()
-    for pattern, name in _CPU_FAMILY_PATTERNS:
-        if re.search(pattern, s):
-            return name
-    return None
-
-
-def benchmark_targets(requests: pd.DataFrame, listings: pd.DataFrame,
-                      min_peers: int = MIN_PEER_GROUP,
-                      quantile: float = BENCHMARK_QUANTILE) -> pd.DataFrame:
-    """Attach a price target and its provenance to every request.
-
-    Priority, highest confidence first:
-      1. `internal`     - median already achieved by BNI for the identical
-                          model + RAM + storage (needs >= min_peers peers)
-      2. `market-model` - 25th percentile of marketplace listings naming the
-                          same model
-      3. `market-spec`  - 25th percentile for the same CPU family + RAM + storage
-      4. `none`         - no defensible benchmark; excluded from savings
-    """
-    df = requests.copy()
-    df["req_price"] = pd.to_numeric(df["requested_unit_price"], errors="coerce")
-    df["cpu_fam"] = df["cpu"].map(cpu_family)
-
-    grp = df.groupby(["laptop_model", "ram_gb", "storage_gb"])["req_price"]
-    df["peer_n"] = grp.transform("size")
-    df["internal_target"] = grp.transform("median")
-
-    mkt = listings.copy()
-    mkt["_price"] = pd.to_numeric(mkt["price_rp"], errors="coerce")
-    mkt["_fam"] = (mkt["cpu_model"].fillna("").astype(str) + " "
-                   + mkt["title"].fillna("").astype(str)).map(cpu_family)
-    titles = mkt["title"].fillna("").astype(str).str.upper()
-
-    by_model = {}
-    for model in df["laptop_model"].dropna().unique():
-        hits = mkt[titles.str.contains(re.escape(str(model).upper()), na=False)]
-        if len(hits) >= MARKET_MODEL_MIN_N:
-            by_model[model] = float(hits["_price"].quantile(quantile))
-
-    spec = mkt.dropna(subset=["_fam", "ram_gb", "storage_gb"]).groupby(["_fam", "ram_gb", "storage_gb"])["_price"]
-    by_spec = {k: float(v) for k, v in spec.quantile(quantile).items() if spec.size()[k] >= MARKET_SPEC_MIN_N}
-
-    targets, sources = [], []
-    for row in df.itertuples():
-        if row.peer_n >= min_peers and pd.notna(row.internal_target):
-            targets.append(row.internal_target); sources.append("internal")
-        elif row.laptop_model in by_model:
-            targets.append(by_model[row.laptop_model]); sources.append("market-model")
-        elif (row.cpu_fam, row.ram_gb, row.storage_gb) in by_spec:
-            targets.append(by_spec[(row.cpu_fam, row.ram_gb, row.storage_gb)]); sources.append("market-spec")
-        else:
-            targets.append(np.nan); sources.append("none")
-    df["price_target"] = targets
-    df["benchmark_source"] = sources
-    df["excess_rp"] = (df["req_price"] - df["price_target"]).clip(lower=0)
-    return df
-
-
-def benchmarked_saving(requests: pd.DataFrame, listings: pd.DataFrame, **kwargs) -> dict:
-    """Per-unit saving plus the coverage it was measured over. Savings scale by
-    coverage, so unbenchmarkable requests contribute nothing rather than being
-    silently assumed to behave like the rest."""
-    df = benchmark_targets(requests, listings, **kwargs)
-    ok = df[df.benchmark_source != "none"]
-    if ok.empty:
-        return dict(per_unit=0.0, coverage=0.0, n_scored=0, detail=df)
-    return dict(per_unit=float(ok.excess_rp.sum() / len(ok)),
-                coverage=len(ok) / len(df), n_scored=len(ok), detail=df)

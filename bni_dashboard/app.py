@@ -219,7 +219,7 @@ if page == PAGES[0]:
         for _, r in base_rows.iterrows():
             st.markdown(f"""
             <div style="background:{NAVY};border:1px solid #E4E9F0;border-radius:12px;padding:12px 16px;margin-bottom:8px;">
-              <div style="color:white;font-weight:700;">{r['scenario']} <span style="font-weight:400;font-size:0.72rem;">(adopsi {r['adoption_rate']*100:.0f}%, tier diskon {int(r['discount_qty_tier'])} unit)</span></div>
+              <div style="color:white;font-weight:700;">{r['scenario']} <span style="font-weight:400;font-size:0.72rem;">(adopsi {r['adoption_rate']*100:.0f}%, target harga = median internal)</span></div>
               <div style="color:#C9D9E8;font-size:0.78rem;display:flex;justify-content:space-between;margin-top:4px;flex-wrap:wrap;gap:4px;">
                 <span>Investment: {pc.fmt_rp(r['pilot_investment_rp'])}</span>
                 <span>Benefit: {pc.fmt_rp(r['est_annual_benefit_rp'])}</span>
@@ -270,29 +270,38 @@ if page == PAGES[0]:
                    f"Σ = **{pc.fmt_rp(ts_detail.rp_saved_per_year.sum())}**. Detail per proses ada di hover.")
 
         st.markdown("##### Modul 3 · Penghematan pengadaan")
-        _sub_live, _lvl_live = pc.find_comparable(valid_listings, "mid", 16, 512, False, min_n=5)
-        _stats_live = pc.bucket_stats(_sub_live)
-        current_quote_avg = float(history.loc[history.spec_id == "SPEC-MID", "current_quote_unit_price_rp"].mean())
-        disc_tier = int(roi_scenarios.loc[roi_scenarios.scenario == scen_pick, "discount_qty_tier"].iloc[0])
-        disc_pct = float(scenarios.loc[scenarios.qty_tier == disc_tier, "assumed_discount_pct"].iloc[0]) / 100.0
-        effective_benchmark = rc.effective_benchmark_with_discount(current_quote_avg, _stats_live["median"], disc_pct)
-        annual_units = 27201 * 0.35 * 0.25
-        gap = max(current_quote_avg - effective_benchmark, 0)
-        price_pts = pd.DataFrame([
-            dict(k="Market benchmark", v=_stats_live["median"], c=NAVY),
-            dict(k=f"Effective benchmark (−{disc_pct*100:.0f}%)", v=effective_benchmark, c="#4C82A6"),
-            dict(k="Current quote BNI", v=current_quote_avg, c=ORANGE),
-        ])
-        figp = px.bar(price_pts, x="v", y="k", orientation="h", text=price_pts.v.apply(pc.fmt_rp))
-        figp.update_traces(marker_color=price_pts.c, textposition="outside", cliponaxis=False,
-                           hovertemplate="<b>%{y}</b><br>%{text}<extra></extra>")
-        figp.update_layout(height=170, margin=dict(l=0, r=120, t=4, b=4), xaxis_visible=False,
+        # Mirrors the assistant's own lookup order: prior BNI purchases of the
+        # identical machine first, marketplace only when internal history has
+        # nothing comparable. Requests neither source can price are excluded.
+        bm = rc.benchmarked_saving(history_source, valid_listings)
+        per_unit, coverage, detail = bm["per_unit"], bm["coverage"], bm["detail"]
+        annual_units = rc.annual_procurement_units(27201, 0.35, 0.25)
+        proc_saving_live = per_unit * annual_units * coverage * adoption
+        v1, v2, v3, v4 = st.columns(4)
+        v1.metric("Cakupan benchmark", f"{coverage*100:.0f}%",
+                  help=f"{bm['n_scored']:,} dari {len(detail):,} permintaan punya pembanding")
+        v2.metric("Dari riwayat internal", f"{int((detail.benchmark_source=='internal').sum()):,}")
+        v3.metric("Dari marketplace", f"{int(detail.benchmark_source.str.startswith('market').sum()):,}")
+        v4.metric("Rata-rata kelebihan/unit", pc.fmt_rp(per_unit))
+        src = (detail[detail.benchmark_source != "none"]
+               .groupby("benchmark_source")
+               .agg(n=("excess_rp", "size"), rata=("excess_rp", "mean")).reset_index())
+        LBL = {"internal": "Riwayat internal BNI", "market-model": "Marketplace — model sama",
+               "market-spec": "Marketplace — spek setara"}
+        src["sumber"] = src.benchmark_source.map(LBL).fillna(src.benchmark_source)
+        figp = px.bar(src.sort_values("rata"), x="rata", y="sumber", orientation="h",
+                      text=src.sort_values("rata").rata.apply(pc.fmt_rp),
+                      color_discrete_sequence=[ORANGE], custom_data=["n"])
+        figp.update_traces(textposition="outside", cliponaxis=False,
+                           hovertemplate="<b>%{y}</b><br>Rata-rata kelebihan %{text}"
+                                         "<br>%{customdata[0]:,} permintaan<extra></extra>")
+        figp.update_layout(height=200, margin=dict(l=0, r=130, t=4, b=4), xaxis_visible=False,
                            yaxis_title="", plot_bgcolor="white")
         st.plotly_chart(figp, use_container_width=True)
-        proc_saving_live = rc.procurement_savings_benefit(current_quote_avg, effective_benchmark, annual_units, adoption)
-        st.caption(f"Selisih **{pc.fmt_rp(gap)}**/unit × {annual_units:,.0f} unit/tahun "
-                   f"(27.201 karyawan × 35% eligible × 25% refresh) × adopsi {adoption*100:.0f}% "
-                   f"= **{pc.fmt_rp(proc_saving_live)}**. Benchmark dari n={_stats_live['n']} listing ({_lvl_live}).")
+        st.caption(f"Urutan pencarian harga acuan: **riwayat internal dulu** (median yang sudah pernah "
+                   f"dicapai BNI untuk mesin identik), **marketplace sebagai fallback** (persentil 25). "
+                   f"Kelebihan rata-rata **{pc.fmt_rp(per_unit)}**/unit x {annual_units:,.0f} unit/tahun "
+                   f"x cakupan {coverage*100:.0f}% x adopsi {adoption*100:.0f}% = **{pc.fmt_rp(proc_saving_live)}**. ")
 
         st.markdown("##### Modul 4 · Roll-up")
         total_benefit_live = ts_detail.rp_saved_per_year.sum() + proc_saving_live

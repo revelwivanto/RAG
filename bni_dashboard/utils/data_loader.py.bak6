@@ -3,7 +3,6 @@ for a real one with the same columns and nothing else needs to change —
 see README.md > Data Replacement Guide."""
 from pathlib import Path
 import csv
-import re
 import pandas as pd
 import streamlit as st
 
@@ -35,32 +34,6 @@ def _read_marketplace_csv(path: Path) -> pd.DataFrame:
             if len(repaired) == len(header):
                 rows.append(repaired)
         return pd.DataFrame(rows, columns=header)
-
-
-_RAM_SIZES = {4, 8, 12, 16, 24, 32, 64}
-_STORAGE_SIZES = {128, 256, 512, 1024, 2048}
-
-
-def _specs_from_title(title) -> tuple:
-    """Pull RAM and storage out of a listing title.
-
-    Titles reliably state both ("Laptop X Ryzen 5 16GB 512GB SSD"), but the
-    scrape's own columns are empty on most rows. The first plausible RAM-sized
-    number is read as RAM and the first plausible storage-sized one as storage,
-    with "1TB"-style values handled separately.
-    """
-    text = str(title)
-    ram = storage = float("nan")
-    tb = re.search(r"(\d)\s*TB", text, re.I)
-    if tb:
-        storage = int(tb.group(1)) * 1024
-    for match in re.finditer(r"(\d{1,4})\s*GB", text, re.I):
-        value = int(match.group(1))
-        if pd.isna(ram) and value in _RAM_SIZES:
-            ram = value
-        elif pd.isna(storage) and value in _STORAGE_SIZES and value >= 128:
-            storage = value
-    return ram, storage
 
 
 def _as_bool(series: pd.Series) -> pd.Series:
@@ -105,14 +78,8 @@ def _normalize_raw_marketplace(df: pd.DataFrame) -> pd.DataFrame:
     normalized["cpu_brand"] = raw["cpu"].str.contains(r"RYZEN|AMD", case=False, regex=True).map({True: "AMD", False: "Intel"})
     normalized["cpu_tier"] = _cpu_tier(raw["cpu"], raw["title"])
     normalized["cpu_model"] = raw["cpu"].replace("", pd.NA)
-    ram_t, sto_t = zip(*(_specs_from_title(t) for t in raw["title"]))
-    # The scrape leaves RAM/storage empty on most rows even though the title
-    # states them ("...16GB 512GB SSD..."). Recovering them here is what keeps
-    # those rows out of `incomplete` -- it roughly doubles the benchmark set.
-    normalized["ram_gb"] = pd.to_numeric(raw["ram_gb"], errors="coerce").fillna(
-        pd.Series(ram_t, index=raw.index))
-    normalized["storage_gb"] = pd.to_numeric(raw["storage_gb"], errors="coerce").fillna(
-        pd.Series(sto_t, index=raw.index))
+    normalized["ram_gb"] = raw["ram_gb"]
+    normalized["storage_gb"] = raw["storage_gb"]
     normalized["dedicated_gpu"] = raw["gpu"].str.strip().ne("")
     normalized["gpu_model"] = raw["gpu"].replace("", pd.NA)
     normalized["screen_in"] = raw["screen_size_in"]
