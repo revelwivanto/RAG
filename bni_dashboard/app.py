@@ -162,6 +162,7 @@ if page == PAGES[0]:
     roi_headline = pilot_metrics.loc["ROI_HEADLINE", "value"]
     docs_processed = pilot_metrics.loc["TOTAL_DOCS_PROCESSED", "value"]
     pilot_investment = float(investment_breakdown.total_rp.sum())
+    corruption_queue = gov.corruption_review_queue(history_source)
 
     st.markdown('<div class="section-tag">Business Impact Snapshot</div>', unsafe_allow_html=True)
     # Every card names the module inside the calculation dropdown that shows
@@ -178,8 +179,8 @@ if page == PAGES[0]:
     kpi_row([
         # Rule pending replacement — the equation is being rewritten, so the
         # card holds its place without asserting a number.
-        dict(label="Potential Corruption", value=None,
-             placeholder="—", note="Rumus sedang diganti — angka ditahan"),
+        dict(label="Potential Corruption", value=len(corruption_queue), decimals=0,
+             note=f"≥{gov.CORRUPTION_FLAG_THRESHOLD} indikator · needs Human Review"),
         dict(label="Total Marketplace Data", value=len(listings), decimals=0),
         dict(label="Documents in Prototype Corpus", value=docs_processed, decimals=0),
         dict(label="Total Pilot Investment", value=pilot_investment/1e6, prefix="Rp", suffix="jt", decimals=1,
@@ -793,6 +794,8 @@ elif page == PAGES[2]:
 # =============================================================================================
 elif page == PAGES[3]:
     split_flags = gov.detect_split_purchases(history)
+    corruption_scored = gov.corruption_flag_indicators(history_source)
+    corruption_queue = gov.corruption_review_queue(history_source)
     ev = gov.evidence_coverage(history)
     flagged_hist = pc.outside_benchmark_flags(history, listings)
     ob = gov.outside_benchmark_summary(flagged_hist)
@@ -800,8 +803,8 @@ elif page == PAGES[3]:
     kpi_row([
         # Formula pending replacement — the count is withheld rather than
         # asserted under a rule that is being rewritten.
-        dict(label="Potential Corruption", value=None, placeholder="—",
-             note="Rumus sedang diganti — angka ditahan"),
+        dict(label="Potential Corruption", value=len(corruption_queue), decimals=0,
+             note=f"≥{gov.CORRUPTION_FLAG_THRESHOLD} dari {len(gov.CORRUPTION_INDICATORS)} indikator"),
         dict(label="Records with Benchmark Reference", value=ev["pct_with_benchmark"], suffix="%", decimals=1),
         dict(label="Records with Supporting Documentation", value=ev["pct_with_doc"], suffix="%", decimals=1),
         dict(label="Current Quotes Outside Benchmark Range", value=ob["pct_outside"], suffix="%", decimals=1),
@@ -809,6 +812,47 @@ elif page == PAGES[3]:
     st.caption("Setiap indikator di atas adalah **potensi** yang memerlukan verifikasi manusia sebelum kesimpulan apa pun diambil — bukan tuduhan, dan tidak ada transaksi yang dilabeli bermasalah hanya karena harganya mahal.")
 
     st.write("")
+    st.write("")
+    st.markdown("#### Antrean Review — Potential Corruption Indicators")
+    st.caption("**Human-in-the-loop.** Sistem hanya menandai permintaan yang memicu beberapa "
+               f"indikator sekaligus (ambang ≥{gov.CORRUPTION_FLAG_THRESHOLD} dari {len(gov.CORRUPTION_INDICATORS)}). "
+               "Penilaian dan investigasi dilakukan **manusia** — baris di bawah adalah kandidat "
+               "untuk diperiksa, **bukan bukti dan bukan kesimpulan** bahwa terjadi pelanggaran.")
+    fq1, fq2, fq3 = st.columns(3)
+    fq1.metric("Masuk antrean review", f"{len(corruption_queue):,}",
+               help=f"dari {len(corruption_scored):,} permintaan")
+    fq2.metric("Ambang indikator", f"≥ {gov.CORRUPTION_FLAG_THRESHOLD}")
+    fq3.metric("Porsi dari total", f"{100*len(corruption_queue)/max(len(corruption_scored),1):.1f}%")
+
+    freq = (corruption_scored[[f"flag_{k}" for k in gov.CORRUPTION_INDICATORS]].sum()
+            .rename(lambda c: gov.CORRUPTION_INDICATORS[c.replace("flag_", "")])
+            .sort_values())
+    freq = pd.DataFrame({"indikator": list(freq.index), "n": list(freq.values)})
+    figf = px.bar(freq, x="n", y="indikator", orientation="h", text="n",
+                  color_discrete_sequence=[ORANGE])
+    figf.update_traces(textposition="outside", cliponaxis=False,
+                       hovertemplate="<b>%{y}</b><br>%{x:,} permintaan memicu<extra></extra>")
+    figf.update_layout(height=300, margin=dict(l=0, r=60, t=6, b=4), xaxis_visible=False,
+                       yaxis_title="", plot_bgcolor="white")
+    st.plotly_chart(figf, use_container_width=True)
+
+    if corruption_queue.empty:
+        st.info("Tidak ada permintaan yang mencapai ambang indikator saat ini.")
+    else:
+        show = corruption_queue.head(25).copy()
+        show["Nilai order"] = pd.to_numeric(show.total_amount, errors="coerce").apply(pc.fmt_rp)
+        show["Harga/unit"] = pd.to_numeric(show.requested_unit_price, errors="coerce").apply(pc.fmt_rp)
+        st.dataframe(
+            show[["request_id", "department", "laptop_brand", "laptop_model",
+                  "Harga/unit", "Nilai order", "risk_score", "indicators_fired"]]
+            .rename(columns={"request_id": "Permintaan", "department": "Unit",
+                             "laptop_brand": "Merek", "laptop_model": "Model",
+                             "risk_score": "Indikator", "indicators_fired": "Indikator yang menyala"}),
+            use_container_width=True, hide_index=True, height=420)
+        st.caption(f"Menampilkan 25 skor tertinggi dari {len(corruption_queue):,} permintaan dalam antrean. "
+                   "Kolom terakhir menjelaskan **kenapa** setiap baris ditandai, sehingga reviewer tahu "
+                   "persis apa yang harus diperiksa.")
+
     st.markdown("#### Conditional Requirements — 4 Gerbang Kelayakan Permintaan")
     cr_src = history_source
     cr1 = float(pd.to_numeric(cr_src["target_uc1_is_match"], errors="coerce").mean() * 100)
