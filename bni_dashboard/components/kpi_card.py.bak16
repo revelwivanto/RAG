@@ -7,7 +7,7 @@ ABOVE the number, and data-type badges are off by default. Pass an explicit
 `data_type` only where a badge is genuinely wanted.
 """
 import streamlit.components.v1 as components
-from components.styling import NAVY, TEXT_MUTED, CARD, BORDER, DATA_TYPE_COLORS
+from components.styling import NAVY, ORANGE, TEXT_MUTED, CARD, BORDER, DATA_TYPE_COLORS
 
 _BADGE_LABELS = {
     "observed": "Observed / Real", "synthetic": "Synthetic", "illustrative": "Illustrative",

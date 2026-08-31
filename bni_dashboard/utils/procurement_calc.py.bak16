@@ -10,6 +10,7 @@ Methodology (see also docs/SCHEMA.md and the in-app Methodology tab):
   where assumed_discount_pct comes from procurement_scenarios.csv and is
   explicitly labeled an assumption, never a regulatory fact.
 """
+import numpy as np
 import pandas as pd
 
 PPN_RATE = 0.12  # UU HPP No.7/2021, general rate since 1 Jan 2025
@@ -27,14 +28,13 @@ def valid_listings(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def data_quality_funnel(df: pd.DataFrame) -> pd.DataFrame:
-    """Three real stages. There used to be a fourth, "Benchmark Dataset",
-    holding the identical count as "Valid" -- two bars with the same number
-    read as a mistake rather than a pipeline step."""
+    raw = len(df)
+    cleaned = (~df["is_duplicate_listing"]).sum()
+    valid = (df["listing_status"] == "valid").sum()
+    benchmark_ready = (df["listing_status"] == "valid").sum()  # same set, kept distinct stage name for the funnel story
     return pd.DataFrame({
-        "stage": ["Raw Listings", "Cleaned (dedup)", "Valid (spec lengkap, tidak suspicious)"],
-        "count": [len(df),
-                  int((~df["is_duplicate_listing"]).sum()),
-                  int((df["listing_status"] == "valid").sum())],
+        "stage": ["Raw Listings", "Cleaned (dedup)", "Valid (spec lengkap, tidak suspicious)", "Benchmark Dataset"],
+        "count": [raw, cleaned, valid, benchmark_ready],
     })
 
 
@@ -120,26 +120,6 @@ def outside_benchmark_flags(history: pd.DataFrame, listings: pd.DataFrame) -> pd
         g["deviation_pct"] = (g["current_quote_unit_price_rp"] - stats["median"]) / stats["median"] * 100
         out_rows.append(g)
     return pd.concat(out_rows, ignore_index=True) if out_rows else history.copy()
-
-
-def iqr_outlier_count(df: pd.DataFrame, price_col: str = "price_rp") -> int:
-    """How many valid listings sit outside the 1.5x IQR fence of their own
-    (cpu_tier, RAM, storage) bucket. Reported for transparency only -- it does
-    NOT change listing_status, so no benchmark or ROI figure moves.
-
-    The card used to read the `is_price_outlier` column, which the loader fills
-    from `is_suspected_scam`; that flag is False on every row, so the metric was
-    permanently 0 and looked like "no outliers found".
-    """
-    total = 0
-    for _, g in valid_listings(df).groupby(["cpu_tier", "ram_gb", "storage_gb"]):
-        p = pd.to_numeric(g[price_col], errors="coerce").dropna()
-        if len(p) < 4:
-            continue
-        q1, q3 = p.quantile([.25, .75])
-        iqr = q3 - q1
-        total += int(((p < q1 - 1.5 * iqr) | (p > q3 + 1.5 * iqr)).sum())
-    return total
 
 
 def fmt_rp(x) -> str:

@@ -1,7 +1,7 @@
 from components.styling import NAVY, ORANGE, CARD, BORDER, TEXT_MUTED
 
 
-def _flow(steps: list[str], accent_last: bool = False, center: bool = False) -> str:
+def _flow(steps: list[str], accent_last: bool = False) -> str:
     nodes = []
     for i, s in enumerate(steps):
         is_last = accent_last and i == len(steps) - 1
@@ -12,11 +12,9 @@ def _flow(steps: list[str], accent_last: bool = False, center: bool = False) -> 
         if i < len(steps) - 1:
             nodes.append(f'<div class="flow-arrow">&#8594;</div>')
     return f"""
-    <div class="flow-row{" flow-center" if center else ""}">{''.join(nodes)}</div>
+    <div class="flow-row">{''.join(nodes)}</div>
     <style>
       .flow-row {{ display:flex; align-items:center; flex-wrap:wrap; gap:2px; font-family:'Inter','Segoe UI',sans-serif; }}
-      .flow-center {{ justify-content:center; }}
-      .flow-center .flow-node {{ flex:1 1 0; min-width:190px; max-width:290px; }}
       .flow-node {{ border:1.5px solid {BORDER}; border-radius:10px; padding:11px 15px; font-size:0.92rem;
                     font-weight:600; text-align:center; box-shadow:none; }}
       .flow-arrow {{ color:{TEXT_MUTED}; font-size:1.1rem; padding:0 6px; }}
@@ -45,7 +43,7 @@ def tax_normalization_flow_html(observed_label: str, ppn_label: str, comparable_
 
 
 def conditional_requirements_flow_html(steps: list[dict]) -> str:
-    """The uc1..uc4 conditional-requirement chain on the Governance page.
+    """The cr1..cr4 conditional-requirement chain on the Governance page.
 
     Each step is {code, label, value, sub}. Values are computed live from the
     target_uc* columns already carried in procurement_history.csv — this is a
@@ -60,7 +58,7 @@ def conditional_requirements_flow_html(steps: list[dict]) -> str:
             f"<span style='font-size:1.45rem;font-weight:800;color:{NAVY};'>{s['value']}</span><br>"
             f"<span style='font-weight:400;font-size:0.75rem;color:{TEXT_MUTED};'>{s['sub']}</span>"
         )
-    return _flow(nodes, center=True)
+    return _flow(nodes)
 
 
 def business_story_cards_html(cards: list[dict]) -> str:

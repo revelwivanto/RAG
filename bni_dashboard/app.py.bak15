@@ -98,8 +98,8 @@ st.sidebar.caption("Legenda label data: **Observed/Real**, **Synthetic**, **Illu
 
 # ---------------------------------------------------------------- load ----
 listings = dl.load_marketplace_listings()
-assumptions = dl.load_assumptions()
 history_source = dl.load_procurement_history()
+history = dl.procurement_history_view(history_source)
 scenarios = dl.load_scenarios()
 legal_docs = dl.load_legal_documents()
 rag_answers = dl.load_rag_answers()
@@ -180,7 +180,7 @@ if page == PAGES[0]:
         # Rule pending replacement — the equation is being rewritten, so the
         # card holds its place without asserting a number.
         dict(label="Potential Corruption", value=potential_corruption["pct"], suffix="%", decimals=1,
-             note=f"100% − {potential_corruption['approved_pct']:.1f}% di-ACC uc4 · perlu review manusia"),
+             note=f"100% − {potential_corruption['approved_pct']:.1f}% di-ACC uc4 · needs Human Review"),
         dict(label="Total Marketplace Data", value=len(listings), decimals=0),
         dict(label="Documents in Prototype Corpus", value=docs_processed, decimals=0),
         dict(label="Total Pilot Investment", value=pilot_investment/1e6, prefix="Rp", suffix="jt", decimals=1,
@@ -322,13 +322,6 @@ if page == PAGES[0]:
         st.caption(f"ROI = (benefit − investasi) / investasi = **{rp_live['roi_x']:.2f}x** · "
                    f"Payback **{rp_live['payback_months']:.1f} bulan**.")
 
-    with st.expander(f"📋 Assumptions Register — {len(assumptions)} input, lengkap dengan sumber & rationale"):
-        st.caption("Setiap angka pada dashboard ini pada akhirnya bersandar pada salah satu baris di "
-                   "bawah. Kolom **status** membedakan fakta yang bersumber (`regulatory_fact`, "
-                   "`observed_external`) dari asumsi yang kami pilih (`assumption`) dan konvensi "
-                   "metodologis (`methodology`).")
-        st.dataframe(assumptions, use_container_width=True, hide_index=True, height=420)
-
     st.divider()
     st.markdown("#### Business Story")
     st.markdown(business_story_cards_html([
@@ -395,15 +388,13 @@ elif page == PAGES[1]:
     # values become NaN so the row still counts toward price stats but drops
     # out of spec groupings. ROI and business-impact figures are computed on
     # page 1 from the untouched frames and are NOT affected.
-    # Bounds, not an allow-list: a fixed list of sizes threw away legitimate
-    # request specs (RAM 18/26, storage 768/1280/1536) and turned 1.276 rows
-    # into NaN for no good reason.
-    RAM_RANGE, STORAGE_RANGE = (4, 32), (128, 2048)
+    RAM_CHOICES = [4, 8, 12, 16, 24, 32]
+    STORAGE_CHOICES = [128, 256, 512, 1024, 2048]
 
     def clamp_specs(df: pd.DataFrame) -> pd.DataFrame:
         df = df.copy()
-        df["RAM (GB)"] = df["RAM (GB)"].where(df["RAM (GB)"].between(*RAM_RANGE))
-        df["Storage (GB)"] = df["Storage (GB)"].where(df["Storage (GB)"].between(*STORAGE_RANGE))
+        df["RAM (GB)"] = df["RAM (GB)"].where(df["RAM (GB)"].isin(RAM_CHOICES))
+        df["Storage (GB)"] = df["Storage (GB)"].where(df["Storage (GB)"].isin(STORAGE_CHOICES))
         return df
 
     unified = clamp_specs(build_unified(listings, history_source))
@@ -421,13 +412,10 @@ elif page == PAGES[1]:
             fx_cpu = st.multiselect("CPU", sorted(unified["CPU"].unique()), default=[], key="fx_cpu")
         with u3:
             fx_gpu = st.multiselect("GPU", sorted(unified["GPU"].unique()), default=[], key="fx_gpu")
-            fx_ram = st.multiselect("RAM (GB)", sorted(unified["RAM (GB)"].dropna().unique()),
-                                    default=[], key="fx_ram",
-                                    help="Dibatasi 4–32 GB. Baris tanpa nilai RAM tetap ikut terhitung.")
+            fx_ram = st.multiselect("RAM (GB)", RAM_CHOICES, default=[], key="fx_ram",
+                                    help="Dibatasi 4–32 GB — nilai di luar itu adalah galat parsing pada data sumber.")
         with u4:
-            fx_sto = st.multiselect("Storage (GB)", sorted(unified["Storage (GB)"].dropna().unique()),
-                                    default=[], key="fx_sto",
-                                    help="Dibatasi 128–2048 GB. Baris tanpa nilai storage tetap ikut terhitung.")
+            fx_sto = st.multiselect("Storage (GB)", STORAGE_CHOICES, default=[], key="fx_sto")
             fx_official = st.selectbox("Penjual/Vendor resmi", ["Semua", "Ya", "Tidak"], key="fx_official")
         pmax = int(unified["Harga"].max() // 1_000_000) + 1
         fx_price = st.slider("Rentang harga (Rp juta)", 0, pmax, (0, pmax), key="fx_price")
@@ -491,14 +479,10 @@ elif page == PAGES[1]:
         fdf = fdf[fdf["CPU"].isin(fx_cpu)]
     if fx_gpu:
         fdf = fdf[fdf["GPU"].isin(fx_gpu)]
-    # `.isin()` is False for NaN, so a row with no RAM value would vanish the
-    # moment the RAM filter is touched -- that is what took "select everything"
-    # from 8.970 down to 6.297. Rows with no value simply cannot be selected
-    # against, so they stay.
     if fx_ram:
-        fdf = fdf[fdf["RAM (GB)"].isin(fx_ram) | fdf["RAM (GB)"].isna()]
+        fdf = fdf[fdf["RAM (GB)"].isin(fx_ram)]
     if fx_sto:
-        fdf = fdf[fdf["Storage (GB)"].isin(fx_sto) | fdf["Storage (GB)"].isna()]
+        fdf = fdf[fdf["Storage (GB)"].isin(fx_sto)]
     if fx_official == "Ya":
         fdf = fdf[fdf["Penjual/Vendor resmi"]]
     elif fx_official == "Tidak":
@@ -636,10 +620,7 @@ elif page == PAGES[1]:
         qc1.metric("Duplicate listing", int(mk.is_duplicate_listing.sum()))
         qc2.metric("Bundle/promo produk", int((mk.is_bundle | mk.is_promo).sum()))
         qc3.metric("Spesifikasi tidak lengkap", int(mk.missing_spec.sum()))
-        qc4.metric("Outlier harga (IQR)", pc.iqr_outlier_count(mk),
-                   help="Listing valid di luar pagar 1,5×IQR bucket spesifikasinya. "
-                        "Ditampilkan sebagai transparansi — tidak mengubah status listing "
-                        "maupun angka benchmark/ROI.")
+        qc4.metric("Outlier harga (IQR)", int(mk.is_price_outlier.sum()))
         st.caption("Flag kualitas dihitung dari `marketplace_listings.csv`, mengikuti filter marketplace di atas.")
 
     with tabs[2]:
@@ -756,17 +737,18 @@ elif page == PAGES[2]:
         fig3.update_layout(barmode="group", yaxis_title="Menit", plot_bgcolor="white", bargap=0.6, margin=dict(t=34, b=8))
         st.plotly_chart(fig3, use_container_width=True)
     with c4:
-        st.markdown("#### Distribusi Sitasi per Kategori Dokumen")
+        st.markdown("#### Distribusi Sitasi per Kategori Sumber")
         # Share of citations per category, not the % that were valid — the
         # slices have to sum to 100% for a pie to mean anything.
-        # All three document categories, under their real names. The chart used
-        # to relabel two of them "history"/"marketplace" -- neither of which is
-        # what a citation category is -- and drop the third, so it showed only
-        # 289 of 428 citations while presenting itself as a 100% breakdown.
         share = (citation_evals.groupby("category").size()
                  .rename("n_citations").reset_index())
-        fig4 = px.pie(share, names="category", values="n_citations", hole=0.45,
-                      color="category", color_discrete_sequence=CATEGORICAL_SEQUENCE)
+        share["label"] = share["category"].map({
+            "SOP & Sirkular Internal": "history",
+            "Referensi Regulasi Eksternal": "marketplace",
+        }).fillna(share["category"])
+        share = share[share["category"] != "Kontrak & Perjanjian Vendor"]
+        fig4 = px.pie(share, names="label", values="n_citations", hole=0.45,
+                      color="label", color_discrete_map={"history": NAVY, "marketplace": ORANGE})
         fig4.update_traces(textinfo="percent+label",
                            hovertemplate="<b>%{label}</b><br>%{value} sitasi<br>%{percent}<extra></extra>")
         st.plotly_chart(fig4, use_container_width=True)
@@ -826,6 +808,7 @@ elif page == PAGES[2]:
 # PAGE 4 — GOVERNANCE & ANTI-CORRUPTION
 # =============================================================================================
 elif page == PAGES[3]:
+    split_flags = gov.detect_split_purchases(history)
 
     # --- the four eligibility gates now open the page: they are the business
     # flow (does the machine fit -> how long will it last -> what does it cost
@@ -862,7 +845,7 @@ elif page == PAGES[3]:
     ])
     st.caption("Setiap indikator di atas adalah **potensi** yang memerlukan verifikasi manusia sebelum kesimpulan apa pun diambil — bukan tuduhan, dan tidak ada transaksi yang dilabeli bermasalah hanya karena harganya mahal.")
     st.markdown("#### Permintaan yang Tidak Lolos Gerbang uc4")
-    st.caption("Daftar lengkap permintaan di balik angka **Potential Corruption** — yaitu yang **tidak** "
+    st.caption("Daftar permintaan di balik angka **Potential Corruption** — yaitu yang **tidak** "
                "mendapat persetujuan management (`target_uc4_is_approved = 0`). Ini kandidat "
                "untuk **diperiksa manusia**, bukan bukti dan bukan kesimpulan bahwa terjadi pelanggaran.")
 
@@ -879,77 +862,23 @@ elif page == PAGES[3]:
         n3.metric("Nilai order terkait",
                   pc.fmt_rp(pd.to_numeric(not_approved["total_amount"], errors="coerce").sum()))
 
+        show = not_approved.copy()
+        show["Harga/unit"] = pd.to_numeric(show["requested_unit_price"], errors="coerce").apply(pc.fmt_rp)
+        show["Nilai order"] = pd.to_numeric(show["total_amount"], errors="coerce").apply(pc.fmt_rp)
         # The other three gates travel with each row so a reviewer can see at a
         # glance whether the rejection lines up with a spec or cost problem.
-        tbl = pd.DataFrame({
-            "Permintaan": not_approved["request_id"].astype(str),
-            "Unit": not_approved["department"].astype(str),
-            "Merek": not_approved["laptop_brand"].astype(str),
-            "Model": not_approved["laptop_model"].astype(str),
-            "Harga/unit": pd.to_numeric(not_approved["requested_unit_price"], errors="coerce"),
-            "Nilai order": pd.to_numeric(not_approved["total_amount"], errors="coerce"),
-            "Spek cocok (uc1)": pd.to_numeric(not_approved["target_uc1_is_match"], errors="coerce")
-                                  .map({1: "Ya", 0: "Tidak"}).fillna("—"),
-            "Umur pakai (uc2)": pd.to_numeric(not_approved["target_uc2_months_to_failure"], errors="coerce"),
-            "Opex 3 thn (uc3)": pd.to_numeric(not_approved["target_uc3_opex_idr"], errors="coerce"),
-        }).sort_values("Nilai order", ascending=False)
-
-        d1, d2, d3 = st.columns([2, 3, 1])
-        dept_opts = sorted(tbl["Unit"].unique())
-        f_dept = d1.multiselect("Filter unit / department", dept_opts, default=[], key="uc4_dept",
-                                help="Kosongkan untuk menampilkan semua unit.")
-        q = d2.text_input("Cari (semua kolom)", value="", key="uc4_q",
-                          placeholder="mis. HR, MacBook, Latitude, REQ-2026-002...")
-        page_size = int(d3.selectbox("Baris/hal.", [25, 50, 100, 250], index=0, key="uc4_size"))
-
-        view = tbl[tbl["Unit"].isin(f_dept)] if f_dept else tbl
-        if q.strip():
-            hay = view.astype(str).apply(lambda c: c.str.lower())
-            mask = pd.Series(True, index=view.index)
-            for term in [t for t in q.lower().split() if t]:
-                mask &= hay.apply(lambda c: c.str.contains(term, regex=False, na=False)).any(axis=1)
-            view = view[mask]
-
-        total_rows = len(view)
-        total_pages = max(1, (total_rows + page_size - 1) // page_size)
-        # Same pattern as the procurement grid: seed the number_input's key
-        # before the widget exists, and create every button ahead of it so a
-        # click can still write that key.
-        cur = min(max(1, int(st.session_state.get("uc4_jump", 1))), total_pages)
-        st.session_state["uc4_jump"] = cur
-
-        b1, b2, b3, b4, b5, b6 = st.columns([1, 1, 2.2, 1, 1, 3])
-        jump_to = None
-        if b1.button("⏮ First", key="uc4_first", disabled=cur == 1):
-            jump_to = 1
-        if b2.button("◀ Prev", key="uc4_prev", disabled=cur == 1):
-            jump_to = cur - 1
-        if b4.button("Next ▶", key="uc4_next", disabled=cur >= total_pages):
-            jump_to = cur + 1
-        if b5.button("Last ⏭", key="uc4_last", disabled=cur >= total_pages):
-            jump_to = total_pages
-        if jump_to is not None:
-            st.session_state["uc4_jump"] = int(min(max(1, jump_to), total_pages))
-            st.rerun()
-        cur = int(b3.number_input(f"Halaman (1–{total_pages})", min_value=1, max_value=total_pages,
-                                  step=1, key="uc4_jump", label_visibility="collapsed"))
-
-        lo, hi = (cur - 1) * page_size, min(cur * page_size, total_rows)
-        b6.markdown(
-            f"<div style='padding-top:6px;font-weight:700;color:{NAVY};'>"
-            f"[{hi:,}/{total_rows:,}] &nbsp;·&nbsp; halaman {cur:,} dari {total_pages:,}</div>",
-            unsafe_allow_html=True)
-
-        if total_rows == 0:
-            st.info("Tidak ada baris yang cocok dengan filter atau pencarian.")
-        else:
-            show = view.iloc[lo:hi].copy()
-            show["Harga/unit"] = show["Harga/unit"].apply(pc.fmt_rp)
-            show["Nilai order"] = show["Nilai order"].apply(pc.fmt_rp)
-            show["Umur pakai (uc2)"] = show["Umur pakai (uc2)"].apply(
-                lambda v: f"{v/12:.1f} thn" if pd.notna(v) else "—")
-            show["Opex 3 thn (uc3)"] = show["Opex 3 thn (uc3)"].apply(pc.fmt_rp)
-            st.dataframe(show, use_container_width=True, hide_index=True,
-                         height=min(60 + 36 * len(show), 620))
-            st.caption("Tiga gerbang lainnya ikut ditampilkan agar reviewer bisa melihat apakah "
-                       "penolakannya sejalan dengan masalah spesifikasi atau biaya.")
+        show["Spek cocok (uc1)"] = pd.to_numeric(show["target_uc1_is_match"], errors="coerce").map(
+            {1: "Ya", 0: "Tidak"}).fillna("—")
+        show["Umur pakai (uc2)"] = pd.to_numeric(show["target_uc2_months_to_failure"], errors="coerce").apply(
+            lambda v: f"{v/12:.1f} thn" if pd.notna(v) else "—")
+        show["Opex 3 thn (uc3)"] = pd.to_numeric(show["target_uc3_opex_idr"], errors="coerce").apply(pc.fmt_rp)
+        show = show.sort_values("total_amount", ascending=False).head(25)
+        st.dataframe(
+            show[["request_id", "department", "laptop_brand", "laptop_model", "Harga/unit",
+                  "Nilai order", "Spek cocok (uc1)", "Umur pakai (uc2)", "Opex 3 thn (uc3)"]]
+            .rename(columns={"request_id": "Permintaan", "department": "Unit",
+                             "laptop_brand": "Merek", "laptop_model": "Model"}),
+            use_container_width=True, hide_index=True, height=420)
+        st.caption(f"Menampilkan 25 nilai order terbesar dari {len(not_approved):,} permintaan yang tidak "
+                   "lolos uc4. Tiga gerbang lainnya ikut ditampilkan agar reviewer bisa melihat apakah "
+                   "penolakannya sejalan dengan masalah spesifikasi atau biaya.")

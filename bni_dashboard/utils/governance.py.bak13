@@ -142,19 +142,20 @@ def corruption_review_queue(requests: pd.DataFrame,
 
 
 # ---------------------------------------------------------------------------
-# Potential corruption — share of requests that did not clear uc4
+# Potential corruption — derived from the uc4 approval gate
 # ---------------------------------------------------------------------------
 # Replaces the 9-indicator additive score as the headline figure. uc4 is the
-# management-approval gate: `target_uc4_is_approved`. The indicator is the
-# share of requests that did NOT clear it.
+# management-approval gate: `target_uc4_is_approved`. Its "concentration" is
+# the share of requests that did NOT clear that gate, and the potential
+# percentage is that concentration's complement.
 #
 # Still an indicator for human review, never a determination -- see the
 # terminology used throughout the Governance page.
 def potential_corruption_pct(requests: pd.DataFrame) -> dict:
     approved_pct = float(pd.to_numeric(requests["target_uc4_is_approved"],
                                        errors="coerce").mean() * 100)
-    # The requests that did NOT clear the management-approval gate are the ones
-    # worth a look; the approved majority is not an indicator of anything.
-    return dict(pct=100.0 - approved_pct,
+    uc4_concentration = 100.0 - approved_pct   # share not approved
+    return dict(pct=100.0 - uc4_concentration,
+                uc4_concentration=uc4_concentration,
                 approved_pct=approved_pct,
                 n=len(requests))
